@@ -1,0 +1,85 @@
+@import 'variable';
+
+
+
+
+// search component css
+.search{
+    margin-top: -10px;
+    height: 90px;
+    text-align: center;
+    margin-bottom: 20px;
+    .container{
+        height: 100%;
+        background-image: url($searchbg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .ant-input-search{
+        margin-top: 25px;
+    }
+}
+
+// mbookitem component css
+.m-book-item{
+    display: flex;
+    margin-bottom: 20px;
+    .pic{
+        width: 100%;
+        margin-right: 10px;
+        img{
+            display: block;
+            width: 100%;
+        }
+    }
+    .ant-btn{
+        height: 28px;
+        line-height: 28px;
+    }
+    .info-title{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+// mbooinfo component css
+.m-book-info{
+    display: flex;
+    margin-bottom: 20px;
+    .pic{
+        width: 180px;
+        margin-right: 10px;
+        img{
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+//media css
+.media{
+    .media-left,.media-body{
+        display: table-cell;
+        vertical-align: top;
+    }
+    .media-body{
+        padding: 0 10px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.reply{
+    margin: 10px 0;
+    form{
+        display: flex;
+    }
+    .reply-body{
+        width: 68%;
+    }
+    .reply-right{
+        .ant-btn{
+            margin-left:5px;
+        }
+    }
+}

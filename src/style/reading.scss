@@ -1,0 +1,27 @@
+@import 'variable';
+.book-reading-page{
+    background: $bodybgcolor;
+    p{
+        text-indent: 10px;
+    }
+    .nav{
+        position: relative;
+        padding: 10px;
+        box-sizing: content-box;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .color-group{
+        display: flex;
+        align-items: center;
+        .circle{
+            margin: 0 5px;
+            cursor: pointer;
+            &.active{
+                box-shadow: 0 0 5px #333333;
+            }
+        }
+        
+    }
+}

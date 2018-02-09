@@ -1,0 +1,132 @@
+@import 'variable';
+
+@import 'override.scss';
+@import 'common.scss';
+@import 'component.scss';
+
+
+// app css
+.header{
+    background-color: #101010;
+    margin-bottom: 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+}
+
+.footer{
+    margin-top: 100px;
+    text-align: center;
+    background-color: #101010;
+    color: #999999;
+    p{
+        font-size: 12px;
+        line-height: 50px;
+        margin: 0;
+    }
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo{
+        width: 50px;
+    }
+    .nav-header{
+        display: flex;
+        align-items: center;
+
+        li{
+            display: inline-block;
+            margin: 0 15px;
+            .active{
+                color: #D3D3D3;
+            }
+            a{
+                display: block;
+                color: #666666;
+                font-size: 18px;
+                line-height: 50px;
+            }
+            a:hover{
+                color: white;
+            }
+        }
+    }
+    .nav-header-right{
+        padding: 10px 0;
+        .ant-dropdown-link{
+            line-height: 28px;
+            font-size: 14px;
+            color: #f2f2f2;
+            background-color: transparent;
+            border: none;
+        }
+    }
+}
+
+
+.hot-book{
+    margin-bottom: 20px;
+    .ant-carousel .slick-slide{
+        background-color: #f2f2f2;
+        overflow: hidden;
+    }
+    .ant-carousel .slick-dots li.slick-active button{
+        background: #333;
+    }
+    .ant-carousel .slick-dots li button{
+        background:gray; 
+    }
+}
+.book-nav{
+    @extend %flexonerow;
+    justify-content:center;
+    padding: 15px 0;
+    li{
+        margin: 0 5px;
+    }
+    .book{
+        display: block;
+        width: 150px;
+        height: 200px;
+        text-align: center;
+        font-size: 14px;
+        color: $bodycolor;
+        padding-bottom: 30px;
+        overflow: hidden;
+        img{
+            display: block;
+            height: 100%;
+        }
+
+    }
+    a:hover{
+        color: $acolor;
+    }
+    
+}
+.tag-box{
+    margin-bottom: 20px;    
+    .ant-tag{
+        margin-top:5px;
+        margin-bottom: 5px; 
+    }
+}
+
+.circle{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    &.white{
+        background-color: #ffffff;
+    }
+    &.dark{
+        background-color: #222222;
+    }
+    &.green{
+        background-color: #6E8B3D;
+    }
+}

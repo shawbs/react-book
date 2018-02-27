@@ -1,3 +1,4 @@
+# The project consists of react, react-router4, redux, antd3.
 ```
 //本地开发环境
 node 8.2.1

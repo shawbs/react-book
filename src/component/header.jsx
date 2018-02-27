@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {IndexLink,Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
-import {Menu,Dropdown,Icon,Input,Avatar } from 'antd'
+import {Menu,Dropdown,Icon,Input,Avatar,Badge,Modal,Radio  } from 'antd'
 import logo from '../asset/logo.svg'
 
 class HeaderBase extends Component {
@@ -10,9 +10,10 @@ class HeaderBase extends Component {
             <div className="header">
                 <div className="container">
                     <div className="navbar">
-                        <IndexLink to="/" className="logo">
-                            <img src={logo} alt=""/>
-                        </IndexLink>
+                        <Link to="/" className="logo">
+                            {/* <img src={logo} alt=""/> */}
+                            SG
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -20,30 +21,69 @@ class HeaderBase extends Component {
     }
 }
 
-const menu = (
-    <Menu>
-    <Menu.Item key="0">
-      <a href="/">用户设置</a>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="1"><Link to="/user/login">退出</Link></Menu.Item>
-  </Menu>
-)
+
 
 class Header extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            visible: false,
+            messageVisible: false
+        }
+        this.openSetting = this.openSetting.bind(this);
+        this.closeSetting = this.closeSetting.bind(this);
+        this.openMessage = this.openMessage.bind(this);
+        this.closeMessage = this.closeMessage.bind(this);
+        this.changeMode = this.changeMode.bind(this);
+    }
+    openSetting(){
+        console.log(1)
+        this.setState({
+            visible: true
+        })
+    }
+    closeSetting(){
+        this.setState({
+            visible: false
+        })
+    }
+    openMessage(){
+        this.setState({
+            messageVisible: true
+        })
+    }
+    closeMessage(){
+        this.setState({
+            messageVisible: false
+        })
+    }
+    changeMode(e){
+        console.log(`radio checked:${e.target.value}`)
+    }
     render (){
+        const menu = (
+            <Menu onClick={this.openSetting}>
+                <Menu.Item key="0">
+                    用户设置
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="1"><Link to="/user/login">退出</Link></Menu.Item>
+            </Menu>
+        )
+
         return (
             <div className="header">
                 <div className="container">
                     <div className="navbar">
                         
                         <div className="nav-header">
-                            <IndexLink to="/" className="logo">
-                                <img src={logo} alt=""/>
-                            </IndexLink>
+                            <Link to="/" className="logo">
+                                {/* <img src={logo} alt=""/> */}
+                                SG
+                            </Link>
                             <ul>
                                 <li>
-                                    <IndexLink to="/" className="active">首页</IndexLink>
+                                    <Link to="/" className="active">首页</Link>
                                 </li>
                                 <li>
                                     <Link to="/book">书库</Link>
@@ -57,10 +97,16 @@ class Header extends Component{
                                 placeholder="输入书名或作者"
                                 style={{ width: 300 }}
                                 size="large"
-                                onSearch={value => console.log(value)} />
+                                onSearch={value => console.log(value)} 
+                                enterButton
+                            />
                             }
                         </div>
                         <div className="nav-header-right">
+
+                            <Badge dot className="a" onClick={this.openMessage}>
+                                <Icon type="bell" />
+                            </Badge>
                             <Dropdown overlay={menu} trigger={['click']}>
                                 <button className="ant-dropdown-link">
                                 <Avatar className="pull-left" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>    
@@ -69,6 +115,31 @@ class Header extends Component{
                             </Dropdown>
                         </div>
                     </div>
+                    <Modal
+                        title={`设置`}
+                        visible={this.state.visible}
+                        closable={false}
+                        footer={null}
+                        width={500}
+                        mask={false}
+                        onCancel={this.closeSetting}
+                    >
+                    <Radio.Group onChange={this.changeMode} defaultValue="a">
+                        <Radio.Button value="a">普通模式</Radio.Button>
+                        <Radio.Button value="b">单人模式</Radio.Button>
+                    </Radio.Group>
+                    </Modal>
+                    <Modal
+                        title={`消息`}
+                        visible={this.state.messageVisible}
+                        closable={false}
+                        footer={null}
+                        width={300}
+                        mask={false}
+                        onCancel={this.closeMessage}
+                    >
+
+                    </Modal>
                 </div>
             </div>
         )

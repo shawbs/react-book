@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
-import {Link,IndexLink} from 'react-router';
+import {Link,IndexLink} from 'react-router-dom';
 
-import logo from '../../asset/logo.svg';
-
+import '../../style/login.scss';
 
 import store from '../../store/store';
 import {doLogin} from '../../store/action';
+
+
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
@@ -72,6 +73,9 @@ export default class Login extends Component{
   render () {
     return (
       <div className="container">
+        <div className="login-logo">
+            <Link to="/">SG</Link>
+        </div>
         <div className="login">
           <WrapLoginForm />
         </div>

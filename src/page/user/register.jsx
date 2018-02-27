@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import {Link,IndexLink} from 'react-router';
+import {Link,IndexLink} from 'react-router-dom';
 
-import logo from '../../asset/logo.svg'
+import '../../style/login.scss';
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
@@ -16,12 +16,13 @@ class RegisterForm extends Component{
       }
     });
   }
-  checkConfirm = (rule, value, callback) => {
+  checkPassword = (rule, value, callback) => {
     const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
+    if (value && value !== form.getFieldValue('password')) {
+      callback('两次密码不一致');
+    } else {
+      callback();
     }
-    callback();
   }
   render(){
     const { getFieldDecorator } = this.props.form;
@@ -51,28 +52,31 @@ class RegisterForm extends Component{
     }
     return(
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem  {...formItemLayout} label="用户名">
+        <FormItem hasFeedback {...formItemLayout} label="用户名">
           {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入用户名！' }],
+            rules: [
+              { required: true, message: '请输入邮箱!' },
+              { type: 'email', message: '请输入正确的邮箱'}
+            ],
           })(
             <Input type="email" placeholder="请输入邮箱"/>
           )}
         </FormItem>
-        <FormItem {...formItemLayout} label="用户密码">
+        <FormItem hasFeedback {...formItemLayout} label="用户密码">
           {getFieldDecorator('password', {
             rules: [
               { required: true, message: '请输入用户密码！' },
-              { validator: this.checkConfirm}
+              { min: 6,message:'输入6以上位数的密码'}
             ]
           })(
             <Input type="password" placeholder="用户密码" />
           )}
         </FormItem>
-        <FormItem {...formItemLayout} label="确认密码">
+        <FormItem hasFeedback {...formItemLayout} label="确认密码">
           {getFieldDecorator('password_confirm',{
             rules: [
               { required: true, message: '请确认用户密码！' },
-              { validator: this.checkConfirm}
+              { validator: this.checkPassword}
             ]
           })(
             <Input type="password" placeholder="用户密码" />
@@ -89,6 +93,9 @@ class RegisterForm extends Component{
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit" className="login-form-button">
           注册
+          </Button>&nbsp;&nbsp;&nbsp;
+          <Button  htmlType="reset" className="login-form-button">
+          重置
           </Button>
         </FormItem>
         <FormItem {...tailFormItemLayout}>
@@ -105,6 +112,9 @@ export default class Register extends Component{
   render () {
     return (
       <div className="container">
+        <div className="login-logo">
+            <Link to="/">SG</Link>
+        </div>
         <div className="register">
           <WrapRegisterForm />
         </div>

@@ -1,18 +1,18 @@
 
+export function hasClass( elements,cName ){ 
+    return !!elements.className.match( new RegExp( "(\\s|^)" + cName + "(\\s|$)") ); 
+}; 
+export function addClass( elements,cName ){ 
+if( !hasClass( elements,cName ) ){ 
+    elements.className += " " + cName; 
+}; 
+}; 
+export function removeClass( elements,cName ){ 
+if( hasClass( elements,cName ) ){ 
+    elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), "" );
+}; 
+};
 
-export function removeClass(dom,className){
-    dom.indexOf(className) != -1 && dom.className.replace(className,'');
-}
-
-export function addClass(dom,className){
-    dom.indexOf(className) == -1 && (dom.className+=' ' + className);
-}
-
-
-String.prototype.trim=function()
-{   
-     return this.replace(/(^\s*)(\s*$)/g, '');
-}
 
 
 

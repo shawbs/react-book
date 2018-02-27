@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {Link,IndexLink} from 'react-router';
+import {Link} from 'react-router-dom';
 
+import '../../style/login.scss';
 import {Form,Input,Button,Col} from 'antd'
 const FormItem = Form.Item;
 
@@ -59,10 +60,11 @@ export default class Getpwd extends Component{
     super(props);
   }
   componentDidMount(){
-    document.title = this.props.params.index==1 ? '找回密码' : '设置新密码'
+    console.log(this)
+    document.title = this.props.match.params.index==1 ? '找回密码' : '设置新密码'
   }
   render(){
-    let current_index = this.props.params.index
+    let current_index = this.props.match.params.index
     let getpwd;
     if(current_index == 1){
       getpwd = GetPwd;
@@ -71,6 +73,9 @@ export default class Getpwd extends Component{
     }
     return(
         <div className="container">
+          <div className="login-logo">
+              <Link to="/">SG</Link>
+          </div>
           {getpwd}
         </div>
     )

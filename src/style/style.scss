@@ -12,6 +12,11 @@
     height: 52px;
     display: flex;
     align-items: center;
+    .ant-badge{
+        color: #ffffff;
+        font-size: 16px;
+        margin-right: 10px;
+    }
 }
 
 .footer{
@@ -32,6 +37,14 @@
     justify-content: space-between;
     .logo{
         width: 50px;
+        font-size: 35px;
+        font-family: Gabriola;
+        color: #f2f2f2;
+    }
+    .ant-input-search{
+        @media screen and (max-width:850px) {
+            display: none;
+        }
     }
     .nav-header{
         display: flex;
@@ -74,7 +87,7 @@
         overflow: hidden;
     }
     .ant-carousel .slick-dots li.slick-active button{
-        background: #333;
+        background: $green;
     }
     .ant-carousel .slick-dots li button{
         background:gray; 
@@ -86,26 +99,35 @@
     padding: 15px 0;
     li{
         margin: 0 5px;
+        position: relative;
     }
     .book{
         display: block;
-        width: 150px;
-        height: 200px;
         text-align: center;
         font-size: 14px;
-        color: $bodycolor;
-        padding-bottom: 30px;
+        padding-bottom: 5px;
+        border-radius: 4px;
+    }
+    .book-edit{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        background-color: rgba(0,0,0,.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .img{
+        display: block;
+        width: 130px;
+        height: 160px;
+        border-radius: 4px;
         overflow: hidden;
-        img{
-            display: block;
-            height: 100%;
-        }
-
     }
-    a:hover{
-        color: $acolor;
-    }
-    
+    .img img{height: 100%}  
 }
 .tag-box{
     margin-bottom: 20px;    
@@ -122,6 +144,7 @@
     border-radius: 50%;
     &.white{
         background-color: #ffffff;
+        border: 1px solid #cccccc;
     }
     &.dark{
         background-color: #222222;
@@ -129,4 +152,25 @@
     &.green{
         background-color: #6E8B3D;
     }
+}
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.scrollbar::-webkit-scrollbar{
+    width: 16px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb{
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
 }

@@ -1,20 +1,39 @@
 import React,{Component} from 'react';
-import {Link,IndexLink} from 'react-router';
+import {Link} from 'react-router-dom';
 
-import {MBookInfo,Media} from '../../component/common';
+import {MBookInfo,Media,BookDirectory} from '../../component/common';
 import {Header} from '../../component/header';
-import {Row,Col,Breadcrumb,Input,Button,} from 'antd';
+import {Row,Col,Breadcrumb,Input,Button,Modal} from 'antd';
 export default class BookInfo extends Component{
   constructor(props){
     super(props);
     
     this.state = {
-      rateValue:0
+      rateValue:0,
+      visible: false
     }
     this.handleChange = this.handleChange.bind(this);
+    this.LinkReading = this.LinkReading.bind(this);
+    this.openDirectory = this.openDirectory.bind(this);
+    this.closeDireactory = this.closeDireactory.bind(this);
+    this.bookname = this.props.match.params.bookname || '默认书名';
+    this.bookid = this.props.match.params.bookid;
   }
   componentDidMount(){
-
+    console.log(this)
+  }
+  LinkReading(){
+    this.props.history.push(`/book/reading/${this.bookid}`)
+  }
+  openDirectory(){
+    this.setState({
+      visible: true
+    })
+  }
+  closeDireactory(){
+    this.setState({
+      visible: false
+    })
   }
   handleChange (value){
     this.setState({
@@ -22,18 +41,24 @@ export default class BookInfo extends Component{
     })
   }
   render(){
-    let bookname = this.props.router.params.name;
+
     return(
       <div className="bookinfo-page">
         <Header hasSearch={true}/>
         <div className="container">
           <Breadcrumb>
-            <Breadcrumb.Item><IndexLink to="/">首页</IndexLink></Breadcrumb.Item>
-            <Breadcrumb.Item>详情页</Breadcrumb.Item>
+            <Breadcrumb.Item><Link to="/">首页</Link></Breadcrumb.Item>
+            <Breadcrumb.Item>{this.bookname}</Breadcrumb.Item>
           </Breadcrumb>
           <Row>
             <Col span={16}>
-              <MBookInfo value={this.state.rateValue} bookId="123" handleChange={this.handleChange}/>
+              <MBookInfo 
+                value={this.state.rateValue} 
+                bookId={this.bookid} 
+                handleChange={this.handleChange}
+                LinkReading = {this.LinkReading}
+                openDirectory = {this.openDirectory}
+              />
 
               <form className="commentForm">
                 <Input.TextArea row={3} placeholder="输入评论"></Input.TextArea>
@@ -49,6 +74,18 @@ export default class BookInfo extends Component{
             </Col>
           </Row>
         </div>  
+        <Modal
+          title={`${this.bookname} 目录`}
+          visible={this.state.visible}
+          closable={false}
+          footer={null}
+          width={'60%'}
+          mask={false}
+          bodyStyle={{maxHeight:'400px',overflowY:'auto'}}
+          onCancel={this.closeDireactory}
+        >
+          <BookDirectory sections={[1,2,3]}/>
+        </Modal>
       </div>
     )
   }

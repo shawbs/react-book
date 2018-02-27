@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 import {Row,Col,Carousel,Card,Tag,Input   } from 'antd';
 import {MBookItem} from '../../component/common';
@@ -13,7 +13,7 @@ export default class Home extends Component{
   render(){
     return(
       <div className="home-page">
-        <Header hasSearch={true}/>
+        <Header hasSearch/>
         <div className="container">
           <div className="hot-book">
             <h1 className="title">热门作品</h1>
@@ -22,16 +22,13 @@ export default class Home extends Component{
                 <ul className="book-nav">
                   <li>
                     <Link to="/bookinfo/asd" className="book">
-                      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503646813491&di=51ee160d077d1baca9365f5a368855c1&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F15%2F99%2F54%2F15995497-6276f5ee7349771689b1b20204e3fcbc-1.jpg" alt=""/>
+                      <div className="img">
+                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503646813491&di=51ee160d077d1baca9365f5a368855c1&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F15%2F99%2F54%2F15995497-6276f5ee7349771689b1b20204e3fcbc-1.jpg" alt=""/>
+                      </div>
                       <p>bookname</p>
                     </Link>
                   </li>
-                  <li>
-                    <Link className="book">
-                      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503646813491&di=51ee160d077d1baca9365f5a368855c1&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F15%2F99%2F54%2F15995497-6276f5ee7349771689b1b20204e3fcbc-1.jpg" alt=""/>
-                      <p>bookname</p>
-                    </Link>
-                  </li>
+
                 </ul>
 
               </div>

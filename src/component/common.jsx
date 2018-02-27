@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import {Link,browserHistory} from 'react-router'
-
-import {Input,Button,Rate,Avatar,Icon,Tag } from 'antd';
+import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {Input,Button,Rate,Avatar,Icon,Tag,Row,Col } from 'antd';
 class MBookItem extends Component {
     render () {
         return (
             <div className="m-book-item">
-                <Link className="pic">
+                <Link className="pic" to="/book/info/bookid">
                     <img src="https://img3.doubanio.com/mpic/s1727290.jpg" alt=""/>
                 </Link>
                 <div className="info">
                     <h3 className="info-title">
-                        <Link>追风筝的人</Link>
-                        <Link to="book/info/bookid">
-                            <Button type="danger" ghost>阅读</Button>
-                        </Link>
+                        <Link to="/book/info/bookid">追风筝的人</Link>
                     </h3>
                     <div className="line">
                     <span>xxx</span>
@@ -38,10 +35,10 @@ class Search extends Component{
     render (){
         return (
             <div className="search">
-                <div className="container">
+                <div className="search-wrapper">
                     <Input.Search 
                         placeholder="输入书名或作者"
-                        style={{ width: 300 }}
+                        style={{ width: '80%' }}
                         size="large"
                         onSearch={value => console.log(value)} />
                 </div>
@@ -53,14 +50,9 @@ class Search extends Component{
 class MBookInfo extends Component{
     constructor(props){
         super(props);
-        this.onReading = this.onReading.bind(this);
     }
-    componentDidMount(){
 
-    }
-    onReading(){
-        browserHistory.push('/book/reading/' + this.props.bookId);
-    }
+
     render (){
         return (
             <div className="m-book-info">
@@ -88,8 +80,9 @@ class MBookInfo extends Component{
                         <Tag color="red">red</Tag>
                     </div>
                     <div>
-                        <Button className="red" htmlType="button" onClick={this.onReading}>开始阅读</Button>&nbsp;&nbsp;&nbsp;
-                        <Button type="primary" htmlType="button">加入书架</Button>
+                        <Button type="primary" htmlType="button" onClick={this.props.LinkReading}>开始阅读</Button>&nbsp;&nbsp;&nbsp;
+                        <Button type="primary" htmlType="button" onClick={this.props.openDirectory}>目录</Button>&nbsp;&nbsp;&nbsp;
+                        <Button  htmlType="button">加入书架</Button>
                     </div>
                 </div>
             </div>
@@ -121,7 +114,7 @@ class Media extends Component{
                     <Avatar className="pull-left" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                 </div>
                 <div className="media-body">
-                    <div className="media-header"><Link>sgdy</Link></div>
+                    <div className="media-header"><Link to="/personal">sgdy</Link></div>
                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. 
                     <div className="clearfix media-footer text-right">
                         <a href="javascript:;">
@@ -131,7 +124,7 @@ class Media extends Component{
                         <Icon type="like-o"/>
                         </a>&nbsp;&nbsp;&nbsp;
                         {this.state.show &&
-                        <a href="javascript:;" className="a" onClick={this.showReply}>回复</a>
+                        <a href="javascript:;" onClick={this.showReply}>回复</a>
                         }
                     </div>
 
@@ -154,9 +147,45 @@ class Media extends Component{
     }
 }
 
+class BookDirectory extends Component{
+    render(){
+        let sections = this.props.sections || [];
+        return(
+            <div className="book-directory">
+                <Row>
+                {
+                    sections.map((section,index)=>{
+                        return (<Col lg={12} key={index}>{section}</Col>)
+                    })
+                }
+                </Row>  
+            </div>
+        )
+    }
+}
+
+class MPagination extends Component{
+    render(){
+        let isFirstIndex = this.props.currentIndex == 1;
+        let isLastIndex = this.props.currentIndex == this.props.total; 
+        return(
+            <div className="m-pagination">
+                <Button type="primary" disabled={isFirstIndex} icon="arrow-left" shape="circle" ghost></Button>
+                <Button type="primary" disabled={isLastIndex} icon="arrow-right" shape="circle" ghost></Button>
+            </div>
+        )
+    }
+}
+MPagination.propTypes = {
+    currentIndex: PropTypes.number,
+    total: PropTypes.number
+}
+
 export {
     MBookItem,
     MBookInfo,
     Search,
-    Media
+    Media,
+    BookDirectory,
+    MPagination
 } 

@@ -5,11 +5,10 @@
 
 // search component css
 .search{
-    margin-top: -10px;
-    height: 90px;
+    height: 130px;
     text-align: center;
-    margin-bottom: 20px;
-    .container{
+    
+    .search-wrapper{
         height: 100%;
         background-image: url($searchbg);
         background-position: center;
@@ -18,6 +17,26 @@
     .ant-input-search{
         margin-top: 25px;
     }
+    .ant-input{
+        border-color: #666;
+        color: #333;
+        background-color: transparent;
+    }
+    .ant-input-suffix{
+        color: #666;
+    }
+    input::-webkit-input-placeholder{
+        color:#666;
+    }
+    input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+        color:#666;
+    }
+    input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+        color:#666;
+    }
+    input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+        color:#666;
+    }
 }
 
 // mbookitem component css
@@ -25,11 +44,10 @@
     display: flex;
     margin-bottom: 20px;
     .pic{
-        width: 100%;
         margin-right: 10px;
         img{
             display: block;
-            width: 100%;
+            width: 120px;
         }
     }
     .ant-btn{
@@ -75,11 +93,21 @@
         display: flex;
     }
     .reply-body{
-        width: 68%;
+        flex: 1;
     }
     .reply-right{
+        width: 140px;
         .ant-btn{
             margin-left:5px;
         }
+    }
+}
+
+.m-pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        margin: 0 5px;
     }
 }

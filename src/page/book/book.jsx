@@ -1,22 +1,24 @@
 import React,{Component} from 'react';
-import {Link,IndexLink} from 'react-router';
+import {Link} from 'react-router-dom';
 
 import {Header} from '../../component/header';
 import {MBookItem,Search} from '../../component/common';
-import {Tag,Row,Col,Pagination   } from 'antd';
-
+import {Tag,Row,Col,Pagination,Affix   } from 'antd';
+import Footer from '../../component/footer';
 import '../../style/book.scss';
 export default class Book extends Component{
   render(){
     return(
       <div className="book-page">
         <Header/>
-      
-        <div className="container">
+        <Affix offsetTop={20}>
           <Search />
-
+        </Affix>
+        <div className="container">
+          
           <Row>
             <Col span={8}>
+              <Affix offsetTop={120}>
               <h1 className="title">分类</h1>
               <div className="tag-box">
                 <Tag color="pink">玄幻</Tag>
@@ -37,6 +39,7 @@ export default class Book extends Component{
                 <Tag color="blue">blue</Tag>
                 <Tag color="purple">purple</Tag>
               </div>
+              </Affix>
             </Col>
             <Col span={16}>
               <div className="book-list">
@@ -47,10 +50,11 @@ export default class Book extends Component{
                 <MBookItem />
                 <MBookItem />
               </div>
-              <Pagination defaultCurrent={1} defaultPageSize={20} total={30} />
+
             </Col>
           </Row> 
         </div>
+        <Footer />
       </div>
     )
   }

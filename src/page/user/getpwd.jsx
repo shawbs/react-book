@@ -2,7 +2,10 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import '../../style/login.scss';
-import {Form,Input,Button,Col} from 'antd'
+
+import {LoginLogo} from '../../component/common';
+
+import {Form,Input,Button,Col} from 'antd';
 const FormItem = Form.Item;
 
 const formItemLayout ={
@@ -73,9 +76,7 @@ export default class Getpwd extends Component{
     }
     return(
         <div className="container">
-          <div className="login-logo">
-              <Link to="/">SG</Link>
-          </div>
+          <LoginLogo />
           {getpwd}
         </div>
     )

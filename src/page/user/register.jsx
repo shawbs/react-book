@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Link,IndexLink} from 'react-router-dom';
 
 import '../../style/login.scss';
+import {LoginLogo} from '../../component/common';
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
@@ -112,9 +113,7 @@ export default class Register extends Component{
   render () {
     return (
       <div className="container">
-        <div className="login-logo">
-            <Link to="/">SG</Link>
-        </div>
+        <LoginLogo />
         <div className="register">
           <WrapRegisterForm />
         </div>

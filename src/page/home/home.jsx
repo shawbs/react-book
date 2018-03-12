@@ -6,9 +6,14 @@ import {MBookItem} from '../../component/common';
 import {Header} from '../../component/header';
 import Footer from '../../component/footer';
 
+import {getHotBook} from '../../api'
+
 export default class Home extends Component{
   componentDidMount(){
     // console.log(this.props)
+    getHotBook().then(function(res){
+      console.log(res)
+    })
   }
   render(){
     return(

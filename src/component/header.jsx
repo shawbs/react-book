@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
 import {Menu,Dropdown,Icon,Input,Avatar,Badge,Modal,Radio  } from 'antd'
-import logo from '../asset/logo.svg'
+import logo from '../asset/logo.png'
 
 class HeaderBase extends Component {
     render () {
@@ -11,8 +11,7 @@ class HeaderBase extends Component {
                 <div className="container">
                     <div className="navbar">
                         <Link to="/" className="logo">
-                            {/* <img src={logo} alt=""/> */}
-                            SG
+                            <img src={logo} alt=""/>  
                         </Link>
                     </div>
                 </div>
@@ -78,8 +77,7 @@ class Header extends Component{
                         
                         <div className="nav-header">
                             <Link to="/" className="logo">
-                                {/* <img src={logo} alt=""/> */}
-                                SG
+                                <img src={logo} alt=""/> 
                             </Link>
                             <ul>
                                 <li>

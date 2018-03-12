@@ -24,19 +24,4 @@ export function setMessage(text){
 }
 
 
-export const doLogin = (paramter) => (dispatch,getState) =>{
-        dispatch(setLoadingState(true));
-        return api.LOGIN_API(paramter)
-            .then(res=>{
-                console.log(1)
-                dispatch(setLoginState(true));
-                dispatch(setLoadingState(false));
-            })
-            .catch(err=>{
-                console.log(2)
-                dispatch(setLoadingState(false));
-                dispatch(setMessage('hehe, 登录失败')); 
-            })
-        
-}
 

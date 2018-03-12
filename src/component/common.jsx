@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Input,Button,Rate,Avatar,Icon,Tag,Row,Col } from 'antd';
+import {Input,Button,Rate,Avatar,Icon,Tag,Row,Col } from 'antd'
+import logo from '../asset/logo_black.png'
 class MBookItem extends Component {
     render () {
         return (
@@ -181,11 +182,24 @@ MPagination.propTypes = {
     total: PropTypes.number
 }
 
+class LoginLogo extends Component{
+    render(){
+        return(
+            <div className="login-logo">
+                <Link to="/">
+                    <img src={logo} alt=""/>
+                </Link>
+            </div>
+        )
+    }
+}
+
 export {
     MBookItem,
     MBookInfo,
     Search,
     Media,
     BookDirectory,
-    MPagination
+    MPagination,
+    LoginLogo
 } 

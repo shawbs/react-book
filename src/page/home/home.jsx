@@ -6,12 +6,17 @@ import {MBookItem} from '../../component/common';
 import {Header} from '../../component/header';
 import Footer from '../../component/footer';
 
-import {getHotBook} from '../../api'
+import {getHotBook,verifyLogin} from '../../api'
 
 export default class Home extends Component{
   componentDidMount(){
     // console.log(this.props)
+    console.log(document.cookie)
     getHotBook().then(function(res){
+      console.log(res)
+    })
+
+    verifyLogin().then(res=>{
       console.log(res)
     })
   }

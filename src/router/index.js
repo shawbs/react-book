@@ -24,7 +24,7 @@ import Agreement from '../page/other/agreement';
 //配置路由
 const routes = (
 
-		<BrowserRouter>
+		<BrowserRouter basename="/sgbook/">
 			<Switch>
 
 				<Route exact path="/" component={Home} /> 

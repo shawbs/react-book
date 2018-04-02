@@ -13,12 +13,13 @@ const URL = {
     login: '/sg/user/login',
     register:'/sg/user/register',
     getHotBook: '/sg/book/fetchBookByHot',
-    getRecommendBook: '/sg/book/fetchBookByRecommend'
+    getRecommendBook: '/sg/book/fetchBookByRecommend',
+    verifyLogin: '/sg/verifyLogin'
 }
 
-export const POST_API = (url,parameter) => axios.post(url, parameter)
+export const POST_API = (url,parameter={}) => axios.post(url, parameter)
 
-export const GET_API = (url,parameter) => axios.get(url, {params: parameter})
+export const GET_API = (url,parameter={}) => axios.get(url, {params: parameter})
 
 export const LOGIN_ACTION = (parameter) => POST_API(URL.login, parameter)
 
@@ -27,3 +28,5 @@ export const REGISTER_ACTION = (parameter) => POST_API(URL.register, parameter)
 export const getHotBook = (parameter) => GET_API(URL.getHotBook,parameter)
 
 export const getRecommendBook = (parameter) => GET_API(URL.getRecommendBook,parameter)
+
+export const verifyLogin = () => GET_API(URL.verifyLogin)
